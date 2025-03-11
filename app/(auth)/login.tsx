@@ -1,21 +1,29 @@
 import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";
 import icons from "@/constants/icons";
+import { useAuthSession } from "@/context/AuthProvider";
 import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import { useToast } from "expo-toast";
 import { useState } from "react";
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Login() {
-  const handleLogin = () => {};
+  const { signIn } = useAuthSession()
+  const toast = useToast()
 
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
-
-  const [secureEntry,setSecureEntry] = useState(true);
+  const handleLogin = () => {
+    if (form.email === "" || form.password === "") {
+      toast.show("Bütün xanaları doldurun!")
+      return
+    }
+    signIn(form)
+  };
 
   return (
     <SafeAreaView className="bg-white h-full">
@@ -30,7 +38,7 @@ export default function Login() {
           <Image source={icons.backArrow} className="w-8 h-8 color-gray" />
         </TouchableOpacity>
         <Text className="text-5xl font-lexend-bold color-gray flex justify-start items-start p-4 my-5">
-        Daxil olun
+          Daxil olun
         </Text>
         <View className="p-5">
           <InputField
@@ -44,23 +52,26 @@ export default function Login() {
           <InputField
             placeholder="Şifrə"
             icon={icons.lock}
-            secureTextEntry={secureEntry}
+            secureTextEntry={true}
             textContentType="password"
             value={form.password}
             onChangeText={(value) => setForm({ ...form, password: value })}
           />
         </View>
         <TouchableOpacity
-          onPress={() => router.replace("/(root)/(tabs)/home")}
+          onPress={handleLogin}
           className="bg-primary shadow-md shadow-zinc-500 rounded-full py-5 m-5 mb-10"
         >
           <Text className="color-white font-lexend-bold self-center">
-            Qeydiyyatdan keç
+            Daxil olun
           </Text>
         </TouchableOpacity>
         <OAuth />
         <TouchableOpacity
-          onPress={handleLogin}
+          // onPress={handleLogin}
+          onPress={() => {
+            router.push('/mission')
+          }}
           className="bg-white shadow-md shadow-zinc-500 rounded-xl py-5 m-5 my-10"
         >
           <View className="flex flex-row items-center justify-center">

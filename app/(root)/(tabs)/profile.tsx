@@ -1,6 +1,7 @@
 import { settings } from "@/constants/data";
 import icons from "@/constants/icons";
 import images from "@/constants/images";
+import { useAuthSession } from "@/context/AuthProvider";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import {
@@ -44,8 +45,10 @@ const SettingsItem = ({
   </TouchableOpacity>
 );
 export default function Profile() {
+  const { signOut } = useAuthSession()
+
   const handleLogout = async () => {
-    router.replace("/(auth)/welcome");
+    signOut()
   };
 
   return (
@@ -78,7 +81,7 @@ export default function Profile() {
               Əli Əliyev
             </Text>
             <Text className="font-lexend-semibold mt-2 color-gray-800">
-              ali_aliyev@yourdomain.com
+              eli.eliyev@gmail.com
             </Text>
           </View>
         </View>

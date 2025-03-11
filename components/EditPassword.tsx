@@ -3,6 +3,7 @@ import images from "@/constants/images";
 import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 export default function EditPassword() {
   return (
     <SafeAreaView className="bg-white h-full">

@@ -27,7 +27,7 @@ export default function Onboarding() {
         ref={swiperRef}
         loop={false}
         dot={
-          <View className="w-[32px] h-[4px] mx-1 bg-[#E2E8F0] rounded-full" />
+          <View className="w-[16px] h-[4px] mx-1 bg-[#E2E8F0] rounded-full" />
         }
         activeDot={
           <View className="w-[32px] h-[4px] mx-1 bg-[#66AD60] rounded-full" />
@@ -53,7 +53,7 @@ export default function Onboarding() {
         title={isLastSlide ? "Gəlin başlayaq" : "Növbəti"}
         onPress={() =>
           isLastSlide
-            ? router.replace("/(auth)/sign-up")
+            ? router.replace("/(auth)/sign-in")
             : swiperRef.current?.scrollBy(1)
         }
         className="w-96 mx-auto mt-10"

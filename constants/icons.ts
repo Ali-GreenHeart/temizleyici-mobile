@@ -29,10 +29,14 @@ import hide from "@/assets/icons/hide.png";
 import bookmark from "@/assets/icons/bookmark.png";
 import success from "@/assets/icons/success.png";
 import mailIcon from "@/assets/icons/mailIcon.png";
-import rubbishIcon from "@/assets/icons/rubbishIcon.png" ;
+import rubbishIcon from "@/assets/icons/rubbishIcon.png";
 import reserveIcon from "@/assets/icons/reserveIcon.png";
 import walletIcon from "@/assets/icons/walletIcon.png";
 import profilIcon from "@/assets/icons/profilIcon.png";
+import galleryIcon from "@/assets/icons/gallery.png";
+import flipIcon from "@/assets/icons/flip.png";
+import retakeIcon from "@/assets/icons/retake.png";
+
 
 export default {
   profilIcon,
@@ -70,4 +74,7 @@ export default {
   laundry,
   location,
   edit,
+  galleryIcon,
+  flipIcon,
+  retakeIcon
 };

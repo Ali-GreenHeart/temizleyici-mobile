@@ -11,9 +11,9 @@ export default function SignIn() {
   };
 
   return (
-    <SafeAreaView className="bg-white h-full">
-      <StatusBar style="dark" />
-      <ScrollView contentContainerClassName="h-full">
+    <ScrollView>
+      <SafeAreaView className="bg-white pb-10">
+        <StatusBar style="dark" />
         <TouchableOpacity
           onPress={() => {
             router.replace("/(auth)/welcome");
@@ -66,7 +66,7 @@ export default function SignIn() {
             Qeydiyyatdan keç
           </Text>
         </Link>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ScrollView>
   );
 }

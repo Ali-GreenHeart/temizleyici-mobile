@@ -1,11 +1,11 @@
-import { Text, TouchableOpacity, View, Image, FlatList } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import icons from "@/constants/icons";
-import { SafeAreaView } from "react-native-safe-area-context";
-import images from "@/constants/images";
-import Search from "@/components/Search";
 import Filters from "@/components/Filters";
-import Cards from "@/components/Cards";
+import MissionCards from "@/components/MissionCards";
+import icons from "@/constants/icons";
+import images from "@/constants/images";
+import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Mission() {
   return (
@@ -13,26 +13,21 @@ export default function Mission() {
       <StatusBar style="dark" />
       <FlatList
         data={[1, 2, 3, 4]}
-        renderItem={({ item }) => <Cards />}
+        renderItem={({ item }) => <MissionCards />}
         keyExtractor={(item) => item.toString()}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View className="px-5">
-            <View className="flex flex-row items-center justify-between mt-5">
-              <View className="flex flex-row items-center">
-                <Image source={images.icon} className="size-8" />
-                <Text className="text-2xl font-lexend-bold color-gray-800 px-3">
-                  Təmİzləyici
-                </Text>
-              </View>
-              <TouchableOpacity>
-                <Image source={icons.bell} className="size-6" />
+            <View className="flex flex-row items-center mt-5">
+              <TouchableOpacity
+                onPress={() => router.canGoBack()}
+              >
+                <Image source={icons.backArrow} className="size-8" />
               </TouchableOpacity>
+              <Text className="text-2xl font-lexend-bold color-gray-800 px-3">
+                Missiyalar
+              </Text>
             </View>
-            <Text className="text-3xl font-lexend-bold color-gray-800 my-5">
-              Hər vaxtın xeyir, Əli! 👋
-            </Text>
-            <Search />
             <Image
               source={images.mission}
               className="w-full h-[200px]"

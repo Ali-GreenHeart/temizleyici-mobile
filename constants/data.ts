@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import icons from "./icons";
 
 export const settings = [
@@ -8,6 +9,9 @@ export const settings = [
   {
     title: "Şifrəni yenilə",
     icon: icons.lock,
+    onPress: () => {
+      router.push('/(auth)/editpassword')
+    }
   },
 
   {
@@ -26,3 +30,8 @@ export const categories = [
   { title: "Ölkə-daxili", category: "Ölkə-daxili" },
   { title: "Şəhər-daxili", category: "Şəhər-daxili" },
 ];
+
+export const reserves = [
+  { title: "Tamamlanmış", category: "Tamamlanmış" },
+  { title: "Ləğv edilmiş", category: "Ləğv edilmiş" },
+]

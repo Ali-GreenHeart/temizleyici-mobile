@@ -4,6 +4,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 
 import "./global.css";
+import AuthProvider from "@/context/AuthProvider";
+import { ToastProvider } from "expo-toast";
 
 
 
@@ -25,10 +27,14 @@ export default function RootLayout() {
 
   if (!fontsLoaded) return null;
   return (
-    <Stack screenOptions={{ headerShown: false }}>  
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(root)" options={{ headerShown: false }} />
-    </Stack>
+    <ToastProvider>
+      <AuthProvider>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(root)" options={{ headerShown: false }} />
+        </Stack>
+      </AuthProvider>
+    </ToastProvider>
   );
 }

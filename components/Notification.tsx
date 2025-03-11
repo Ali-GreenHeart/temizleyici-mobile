@@ -2,6 +2,7 @@ import icons from "@/constants/icons";
 import { router } from "expo-router";
 import { ScrollView, Text, TouchableOpacity, View, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 export default function Notification() {
   return (
     <SafeAreaView className="bg-white h-full">
@@ -29,7 +30,7 @@ export default function Notification() {
             <Text className="text-black font-lexend-bold text-lg">
               Təmizkar Əli!
             </Text>
-            <Text className="text-gray-500 text-sm font-lexend-mediumn">
+            <Text className="text-gray-500 text-sm font-lexend-medium text-wrap w-100">
               İlk şikayətiniz uğurla başa çatdı. Tullantı aradan qaldırıldı.
               (+50 xal)
             </Text>

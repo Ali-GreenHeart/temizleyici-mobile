@@ -19,11 +19,10 @@ const TabIcon = ({
       className="size-6"
     />
     <Text
-      className={`${
-        focused
-          ? "text-primary font-lexend-medium"
-          : "text-gray-400 font-lexend"
-      }text-xs w-full text-center mt-1`}
+      className={`${focused
+        ? "text-primary font-lexend-medium"
+        : "text-gray-400 font-lexend"
+        }text-xs w-full text-center mt-1`}
     >
       {title}
     </Text>
@@ -40,7 +39,11 @@ export default function TabsLayout() {
           borderTopColor: "#66AD60",
           borderTopWidth: 1,
           minHeight: 70,
+          paddingVertical: 10
         },
+        tabBarLabelStyle: {
+          fontSize: 10
+        }
       }}
     >
       <Tabs.Screen

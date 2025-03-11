@@ -1,6 +1,7 @@
 import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";
 import icons from "@/constants/icons";
+import { useAuthSession } from "@/context/AuthProvider";
 import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
@@ -8,18 +9,21 @@ import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function SignUp() {
-  const handleLogin = () => {};
+  const { signUp } = useAuthSession()
 
   const [form, setForm] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
+  const handleLogin = () => {
+    signUp(form)
+  };
 
   return (
-    <SafeAreaView className="bg-white h-full">
-      <StatusBar style="dark" />
-      <ScrollView className="">
+    <ScrollView className="pb-10">
+      <SafeAreaView className="bg-white h-full">
+        <StatusBar style="dark" />
         <TouchableOpacity
           onPress={() => {
             router.replace("/(auth)/sign-in");
@@ -33,12 +37,11 @@ export default function SignUp() {
           <Text>yaradın</Text>
         </Text>
         <View className="p-5">
-        <InputField
+          <InputField
             placeholder="İstifadəçi adınız"
             icon={icons.person}
-            textContentType="emailAddress"
-            value={form.name}
-            onChangeText={(value) => setForm({ ...form, name: value })}
+            value={form.username}
+            onChangeText={(value) => setForm({ ...form, username: value })}
           />
           <InputField
             placeholder="Email"
@@ -58,7 +61,7 @@ export default function SignUp() {
           />
         </View>
         <TouchableOpacity
-          onPress={() => router.replace("/(root)/(tabs)/home")}
+          onPress={handleLogin}
           className="bg-primary shadow-md shadow-zinc-500 rounded-full py-5 m-5"
         >
           <Text className="color-white font-lexend-bold self-center">
@@ -81,13 +84,13 @@ export default function SignUp() {
             </Text>
           </View>
         </TouchableOpacity>
-       <Link href="/(auth)/login" className="text-lg text-center mt-5">
-       <Text className="font-lexend color-gray-500">Artıq hesabınız var? </Text>
-       <Text className="font-lexend-semibold color-blue">
-       Daxil ol
-            </Text>
-       </Link>
-      </ScrollView>
-    </SafeAreaView>
+        <Link href="/(auth)/login" className="text-lg text-center mt-5">
+          <Text className="font-lexend color-gray-500">Artıq hesabınız var? </Text>
+          <Text className="font-lexend-semibold color-blue">
+            Daxil ol
+          </Text>
+        </Link>
+      </SafeAreaView >
+    </ScrollView >
   );
 }

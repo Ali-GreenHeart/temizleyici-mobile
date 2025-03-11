@@ -6,14 +6,34 @@ import images from "@/constants/images";
 import Search from "@/components/Search";
 import Filters from "@/components/Filters";
 import Cards from "@/components/Cards";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { BE_URL } from "@/constants/api";
+import { useToken } from "@/context/AuthProvider";
+import { router } from "expo-router";
+import { IEvent } from "@/interfaces";
 
 export default function Home() {
+  const [cards, setCards] = useState<IEvent[]>([])
+  const token = useToken();
+  useEffect(() => {
+    console.log(token)
+    axios.get(BE_URL + "user/events", {
+      headers: {
+        Authorization: "Bearer " + token
+      }
+    }).then((res) => {
+      setCards(res.data)
+    }).catch((er) => {
+      console.log(er)
+    })
+  }, [])
   return (
     <SafeAreaView className="bg-white h-full">
       <StatusBar style="dark" />
       <FlatList
-        data={[1,2,3,4]}
-        renderItem={({ item }) => <Cards />}
+        data={cards}
+        renderItem={({ item }) => <Cards card={item} />}
         keyExtractor={(item) => item.toString()}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
@@ -25,11 +45,11 @@ export default function Home() {
                   Təmİzləyici
                 </Text>
               </View>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => router.replace("/notifications")}>
                 <Image source={icons.bell} className="size-6" />
               </TouchableOpacity>
             </View>
-            <Text className="text-3xl font-lexend-bold color-gray-800 my-5">
+            <Text className="text-xl font-lexend-bold color-gray-800 my-5">
               Hər vaxtın xeyir, Əli! 👋
             </Text>
             <Search />
@@ -43,7 +63,7 @@ export default function Home() {
               <Text className="text-2xl font-lexend-bold color-gray-800">
                 Tədbirlər
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => router.push('/allevents')}>
                 <Text className="text-2xl font-lexend-bold color-primary">
                   Hamısı
                 </Text>
